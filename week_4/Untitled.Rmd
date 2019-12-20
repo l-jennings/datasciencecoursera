@@ -1,0 +1,45 @@
+---
+title: "Regular Expressions"
+output: html_document
+---
+
+# Metacharacters
+
+^term selects lines starting with the term
+term$ selects lines ending with the term
+
+[] lists a set of characters we will accept at any give point in the match
+e.g. [Bb][Uu][Ss][Hh] will select Bush, bush, bUSH, bushwalking, etc
+
+[a-z] will select a range of letters
+[a-zA-Z] will select upper or lower case
+
+"." refers to any character
+9.11 will match 9-11, 9/11, 9 11 etc
+
+"|" is an OR expression - selects alternatives
+flood|fire subsets out any lines containing flood or fire
+Can have any number of alternatives
+Can use () to constrain alternatives e.g. ^([Gg]ood | [Bb]ad)
+
+"?" indicates the expression is optional e.g. [Gg]eorge ([Ww]\.)? [Bb]ush
+
+"*" means repeat any number of times, including 0
+"+" means at least one of the item
+
+{ } are interval qualifiers - specifies the minimum and maxium matches of an expression
+e.g. something (+[^ ]+ +){1,5} else
+will find "something", followed by space-word-space before "else" between 1 and 5 times
+
+## combining
+
+``` {r}
+^[Ii]am # will select lines starting I am, i am
+^[0-9][a-zA-Z] # will select lines starting with a number and then a letter
+
+```
+
+
+the "^" character can also be used within a character class and indicates matching characters not in the indicated class
+
+[^?.]$ selects lines that DON'T end in . or ?
